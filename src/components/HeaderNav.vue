@@ -2,45 +2,56 @@
   <nav class="navbar navbar-expand-lg navbar-light bg-warning mb-5">
     <div class="container-fluid">
       <a class="navbar-brand ms-5" href="#">
-        <h3 style="color: white">What movie ?</h3>
+        <router-link to="/" class="nav-link" style="color: #876500"
+          ><h3 style="color: white">What movie ?</h3></router-link
+        >
       </a>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-5">
           <li class="nav-item">
-            <a
+            <router-link to="/" class="nav-link" style="color: #876500"
+              >Accueil</router-link
+            >
+          </li>
+
+          <li class="nav-item">
+            <router-link
+              to="/nouveau-films"
               class="nav-link"
               style="color: #876500"
-              aria-current="page"
-              href="#"
-              >Accueil</a
+              >Film sortis en 2022</router-link
             >
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" style="color: #876500" href="#"
-              >Film sortis en 2022</a
+            <router-link
+              to="/films-français"
+              class="nav-link"
+              style="color: #876500"
+              >Film français</router-link
             >
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" style="color: #876500" href="#"
-              >Film français</a
+            <router-link
+              to="/films-americains"
+              class="nav-link"
+              style="color: #876500"
+              >Film americains</router-link
             >
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" style="color: #876500" href="#"
-              >Film americains</a
-            >
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link" style="color: #876500" href="#"
-              >Les 50 film les mieux notés</a
+            <router-link
+              to="/top-50-des-films"
+              class="nav-link"
+              style="color: #876500"
+              >Les 50 film les mieux notés</router-link
             >
           </li>
         </ul>
+
         <form class="d-flex">
           <input
             class="form-control me-2"
