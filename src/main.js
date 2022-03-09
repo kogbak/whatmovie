@@ -7,31 +7,39 @@ import MovieDetail from "./components/MovieDetail.vue"
 import MovieFr from "./components/MovieFr.vue"
 import MovieNew from "./components/MovieNew.vue"
 import TopMovie50 from "./components/TopMovie50.vue"
+import MovieSearch from "./components/MovieSearch.vue"
 
 Vue.use(VueRouter)
-
 
 Vue.config.productionTip = false
 
 import 'bootstrap'; 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const lesRoutes = [
+const routes = [
   {
   
     path: '/films-americains',
     component: MovieAm
     
   },
+
+  {
+  
+    path: '/recherche-de-films',
+    component: MovieSearch
+    
+  },
+
   {
     
-    path: '/detail-du-film:id',
+    path: '/detail-du-film/:id',
     component: MovieDetail
     
   },
   {
     
-    path: '/films-français',
+    path: '/films-francais',
     component: MovieFr
     
   },
@@ -53,7 +61,7 @@ const lesRoutes = [
 
 const router = new VueRouter({
   mode: 'history',
-  routes: lesRoutes,
+  routes
 })
 
 new Vue({

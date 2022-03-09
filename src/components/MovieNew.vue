@@ -1,63 +1,89 @@
 <template>
   <div>
-    <div class="container">
-      <div class="row text-center d-flex flex-row">
-        <div
-          class="
-            card
-            m-3
-            col-2
-            d-flex
-            justify-content-center
-            align-items-center
-          "
-          v-bind:key="index"
-          v-for="(nouveaufilm, index) in nouveaufilms"
-          style="width: 25rem"
-        >
-          <div class="card-body">
-            <img
-              v-bind:src="preUrl + nouveaufilm.poster_path"
-              alt="moviePoster"
-              class="card-img-top mt-3 mb-5"
-            />
-            <h4 class="card-title mb-3" style="color: #ffc107">
-              {{ nouveaufilm.title }}
-            </h4>
-            <div
-              style="border-bottom: 1px solid #ffc107"
-              class="w-25 mx-auto m-3"
-            ></div>
-            <p class="card-text" style="color: #a7a7a7">
-              {{ nouveaufilm.overview.substring(0, 170) + "..." }}
-            </p>
-            <a href="#" class="btn btn-warning m-3" style="color: #876500"
-              >Detail du film
-            </a>
-            <font-awesome-icon icon="fa-solid fa-arrow-right" />
-          </div>
-        </div>
-      </div>
+    <h1
+      class="text-center m-5 w-50 mx-auto p-3"
+      style="
+        background-color: #f0f0f0;
+        color: #b3b3b3;
+        border: 1px;
+        border-radius: 22px;
+      "
+    >
+      Les nouveaux films de 2022
+    </h1>
+
+        <div class="container"> 
+      <div class="mt-3 mb-3">
+    <BoutonTri :films="films" @trier-films="sortMovies" />
     </div>
+    </div>
+
+
+    <MoviesList :films="films" />
   </div>
 </template>
 
 <script>
-import App from "./App";
+import axios from "axios";
+import MoviesList from "./MoviesList";
+import BoutonTri from "./BoutonTri";
 
 export default {
+  name: "MovieNew",
   components: {
-    App,
+    MoviesList,
+    BoutonTri,
   },
 
   data() {
     return {
       preUrl: "https://image.tmdb.org/t/p/original/",
+      films: [],
     };
   },
 
-  name: "MovieNew",
+  methods: {
 
-  props: ["nouveaufilms"],
+     sortMovies(myMovies) {
+      this.films = myMovies;
+    },
+    
+    getMovies(component) {
+      axios
+        .get(
+          "https://api.themoviedb.org/3/discover/movie?api_key=f39312b1a257a589a68b7feed39d29c8&language=fr&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&year=2022"
+        )
+        .then(function (response) {
+          // .then -> ce que je fait si lappel api a reussi  .then -> ensuite
+          component.films = response.data.results;
+          console.log(component.films);
+          axios
+            .get(
+              "https://api.themoviedb.org/3/discover/movie?api_key=f39312b1a257a589a68b7feed39d29c8&language=fr&sort_by=popularity.desc&include_adult=false&include_video=false&page=2&year=2022"
+            )
+            .then(function (response2) {
+              console.log(response2);
+              component.loading = false;
+              response2.data.results.forEach(function (film) {
+                component.films.push(film);
+              }); // problème
+              console.log(component.films);
+            })
+
+            // .catch si ça se passe pas bien.
+            .catch(function () {
+              component.error = true;
+            });
+        })
+        .catch(function () {
+          console.log("test")
+          component.error = true;
+        });
+    },
+  },
+
+  created() {
+    this.getMovies(this);
+  },
 };
 </script>

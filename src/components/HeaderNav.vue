@@ -1,4 +1,5 @@
 <template>
+<div>
   <nav class="navbar navbar-expand-lg navbar-light bg-warning mb-5">
     <div class="container-fluid">
       <a class="navbar-brand ms-5" href="#">
@@ -26,7 +27,7 @@
 
           <li class="nav-item">
             <router-link
-              to="/films-français"
+              to="/films-francais"
               class="nav-link"
               style="color: #876500"
               >Film français</router-link
@@ -50,21 +51,25 @@
               >Les 50 film les mieux notés</router-link
             >
           </li>
+
+          <li class="nav-item">
+            <router-link
+              to="/recherche-de-films"
+              class="nav-link"
+              style="color: #876500"
+              >Rechercher un film</router-link
+            >
+          </li>
+
         </ul>
 
-        <form class="d-flex">
-          <input
-            class="form-control me-2"
-            type="search"
-            aria-label="Search"
-            value="Rechercher un film"
-            onFocus="javascript:this.value=''"
-          />
-          <button class="btn btn-outline-light me-5" type="submit">Ok</button>
-        </form>
       </div>
     </div>
   </nav>
+  <div class="row w-75 mx-auto">
+  <img class="mb-5" src="../assets/uyjtjtyjt.png" alt="">
+  </div>
+  </div>
 </template>
 
 
