@@ -2,17 +2,13 @@
   <div id="app">
     <HeaderNav />
 
-       
-
     <div v-if="$route.path == '/'">
+      <div class="container">
+        <div class="mt-3 mb-3">
+          <BoutonTri :films="films" @trier-films="sortMovies" />
+        </div>
+      </div>
 
-     <div class="container"> 
-      <div class="mt-3 mb-3">
-    <BoutonTri :films="films" @trier-films="sortMovies" />
-    </div>
-    </div>
-
-    
       <!-- si la route est / (racine du site) -->
       <MoviesList :films="films" :loading="loading" :error="error" />
     </div>
@@ -29,7 +25,6 @@
 
 <script>
 import axios from "axios";
-
 import HeaderNav from "./components/HeaderNav";
 import MoviesList from "./components/MoviesList";
 import FooterApp from "./components/FooterApp";
@@ -54,12 +49,10 @@ export default {
   },
 
   methods: {
-
-     sortMovies(myMovies) {
+    sortMovies(myMovies) {
       this.films = myMovies;
     },
-    
-    
+
     getMovies(component) {
       axios
         .get(
@@ -88,7 +81,7 @@ export default {
             });
         })
         .catch(function () {
-          console.log("test")
+          console.log("test");
           component.error = true;
         });
     },

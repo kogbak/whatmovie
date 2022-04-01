@@ -9,7 +9,7 @@ import MovieNew from "./components/MovieNew.vue"
 import TopMovie50 from "./components/TopMovie50.vue"
 import MovieSearch from "./components/MovieSearch.vue"
 
-Vue.use(VueRouter)
+Vue.use(VueRouter) // on veut utiliser le router on l'intégre a l'application 
 
 Vue.config.productionTip = false
 
